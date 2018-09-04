@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    1,contains: 判断一个字符串是否包含另一个字符串
+    */
+    function contains(target, it) {
+      return target.indexOf(it) != -1;
+    }
+
+    function contains(target, str, separator) {
+      return separator ?
+             (separator + target + separator).indexOf(separator + str + separator) > -1 : target.indexOf(str) > -1;
+    }
+
+    /*
+    2,startsWith： 判定目标字符串是否位于原字符串的开始之处
+    */
+    function startsWith(target, str, ingorecase) {
+      var start_str = target.substr(0, str.length);
+      return ingorecase ? start_str.toLowerCase() === str.toLowerCase() : start_str === str;
+    }
+
+    /*
+    3,endsWith： 判定目标字符串是否位于原字符串的结束之处
+    */
+    function endsWith(target, str, ingorecase) {
+      var end_str = target.substring(target.length - str.length);
+      return ingorecase ? end_str.toLowerCase() === str.toLowerCase() : end_str === str;
+    }
+
+     /*
+    3,repeat: 将一个字符串重复自身n次
+    */
+    function repeat(target, n) {
+      //创建的对象带有length属性，是因为要调用数组的原型方法，需要指定call的第一个参数为类数组对象，类数组对象的必要条件是length属性为非负整数
+      return Array.prototype.join.call({
+        length: n+1
+      }, target);
+    }
+
+    console.log(contains('af df', 'df', ' '));
+    console.log(startsWith('dfaadf', 'd'));
+    console.log(endsWith('ddaadf', 'c'));  
+    console.log(endsWith('ddaadf', 'c'));    
+    console.log(repeat('jacob', 2));    
+      
+  </script>
+</body>
+</html>
