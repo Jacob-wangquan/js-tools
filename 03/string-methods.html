@@ -82,6 +82,16 @@
       });
     }
 
+     /*
+    8,pad: 为字符串的某一端添加填充数
+    */
+    function pad(target, n) {
+      var zero = new Array(n).join('0');
+      var str = zero + target;
+      var result = str.substr(-n);
+      return result;
+    }
+
     console.log(contains('af df', 'df', ' '));
     console.log(startsWith('dfaadf', 'd'));
     console.log(endsWith('ddaadf', 'c'));  
@@ -92,6 +102,7 @@
     console.log(truncate('jacob给给发个非官方个风格给发个非官方个非官方个非官方个非官方个发个非官方个给发个非官方个非官方')); 
     console.log(camelize('aa-bb'));
     console.log(camelize('-aabb'));
+    console.log(pad('-aabb', 3));
   </script>
 </body>
 </html>
