@@ -111,10 +111,78 @@ function groupBy(target, val) {
   return result;
 }
 
+/*
+11,sortBy:根据指定条件排序，通常用于对象数组
+*/
+function sortBy(target, fn, scope) {
+  var array = target.map(function(item, index) {
+    return {
+      el: item,
+      re: fn.call(scope, item, idnex)
+    };
+  }).sort(function(left, right) {
+    var a = left.re, b = right.re;
+    return a < b ? -1 : a > b ? 1 : 0;
+  });
+  return pluck(array, 'el');
+}
+
+/*
+12，union: 对二个数组取并集
+*/
+function union(target, array) {
+  return unique(target.concat(array));
+}
+
+/*
+13,intersect:对二个数组取交集
+*/
+function intersect(target, array) {
+  return target.filter(function(n) {
+    return ~array.indexOf(n);
+  })
+}
+
+/*
+14,diff: 对二个数组取差集（补集)
+*/
+function diff(target, array) {
+  var result = target.slice();
+  for(var i=0; i<result.length; i++) {
+    for(var j = 0; j< array.length; j++) {
+      if(result[i] == array[j]) {
+        result.splice(i, 1);
+        i--;
+        break;
+      }
+    }
+  }
+  return result;
+}
+
+/*
+15,min: 返回数字数组中的最小值
+*/
+function min(target) {
+  return Math.min.apply(0, target);
+}
+
+/*
+16,max: 返回数字数组中的最大值
+*/
+function max(target) {
+  return Math.max.apply(0, target);
+}
+
+/*
+17,
+*/
+
 // console.log(remove([1,3,4,56,5], 2));
 // console.log(shuffle([1,3,4,56,5]));
 // console.log(flatten([[1,2,4],3,[3,2,6],56,5]));
 // console.log(unique([1,3,1,3,4,56,5]));
 console.log(pluck([{a:1,b:3}, {a:2, c: 5}], 'a'));
+console.log(intersect([1,2,4], [1,5,6,2]));
 
 
